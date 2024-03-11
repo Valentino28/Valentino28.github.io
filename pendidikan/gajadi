@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SI Berbasis Web</title>
+	<link rel="stylesheet" type="text/css" href="style1.css">
+</head>
+    <body>
+
+        <!-- bagian header template -->
+        <head>
+            <h1 class="judul">
+                SI Berbasis Web
+            </h1>
+            <p class="deskripsi">
+                Website yang digunakan untuk pengelolaan sistem informasi.
+            </p>
+        </head>
+        <!-- akhir header-->
+
+        <div class="wrap">
+            <!-- menu-->
+            <nav class="menu">
+                <ul>
+                    <li>
+                        <a href="index.php">Home</a>
+                    </li>
+                    <li>
+                        <a href="kabar_pendidikan.php">Kabar Pendidikan</a>
+                    </li>
+                    <li>
+                        <a href="tutorial.php">Tutorial</a>
+                    </li>
+                    <li>
+                        <a href="tentang.php">Tentang</a>
+                    </li>
+                    <li>
+                        <a href="login.php">Login</a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- akhir menu-->
+
+            <!--web-->
+            <aside class="sidebar">
+                <div class="widget">
+                    <h2>Tutorial</h2>
+                    <p>.</p>
+                </div>
+                <div class="widget">
+                    <h2>Post</h2>
+                    <p>Silahkan</p>
+                </div>
+            </aside>
+            <!--akhir sidebar-->
+
+            <!--konten-->
+            <div class="blog">
+                <div class="conteudo">
+                    <div class="post-info">
+                        Di Posting Oleh <b>Bonifasius</b>
+                    </div>
+                    <?php
+                        include "koneksi.php"
+                        $query="SELECT * FROM a.id_artikel,b.nm_kategori,a.judul,a.headline,a.pengirim,a.gambar from artikel a, kategori b WHERE
+					    a.id_kategori=b.id_kategori";
+					    $sql=mysqli_query($conn,$query);
+					    while ($isi=mysqli_fetch_array($sql)) {
+                            $id_artikel = $isi['id_artikel'];
+                            $kategori = stripslashes($isi['nm_kategori']);
+                            $judul=stripslashes($isi['judul']);
+                            $headline=stripslashes($isi['headline']);
+                            $pengirim=stripslashes($isi['pengirim']);
+                            $gambar=stripslashes($isi['gambar']);
+                        }
+                    ?>
+                        <div class="conten">
+                            <img src="<?php echo "gambar/".$isi['gambar'];?>" alt="" class="img-responsive">
+					        <h2><?php echo "<a href='artikel_lengkap.php?id=$id_artikel'>$judul</a>";?></h2>
+                        </div>
+                </div>
+            </div>
+        </div>
+    
+    </body>
+</html>

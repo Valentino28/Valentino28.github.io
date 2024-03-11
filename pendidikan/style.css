@@ -1,0 +1,17 @@
+body {
+  background: #3448db;
+  font-family: sans-serif;
+}
+h1 {
+  color: #fff;
+  text-align: center;
+}
+.login {
+  padding: 1em;
+  margin: 2em auto;
+  width: 17em;
+  background: #bbb;
+  border-radius: 3px;
+}
+/* form {
+} */
